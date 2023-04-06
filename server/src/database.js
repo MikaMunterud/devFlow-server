@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const url =
-  "mongodb+srv://devFlowAdmin:Nackademin@nackademin.mc9bdzy.mongodb.net/?retryWrites=true&w=majority";
+// const user = process.env.DATABASE_USER;
+// const password = process.env.DATABASE_PASSWORD;
+
+const url = `mongodb+srv://devFlowAdmin:Nackademin@nackademin.mc9bdzy.mongodb.net/?retryWrites=true&w=majority"`;
 
 db = () => {
   mongoose
