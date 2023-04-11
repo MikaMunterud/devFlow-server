@@ -35,9 +35,6 @@ app.use(
 db();
 
 app.use("/register", register);
-app.listen(4000, () => {
-  console.log("Server started on port 4000");
-});
 
 app.use("/login", login);
 app.listen(4000, () => {
