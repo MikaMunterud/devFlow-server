@@ -1,3 +1,39 @@
+const express = require("express");
+const createPost = express.Router();
+const mongoose = require("mongoose");
+const postSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    
+    post: {
+        type: String,
+        required: true
+    },
+    likes: {
+        type: Array,
+        default: []
+    },
+    comments: [{
+        comment: {
+            type: String,
+            required: true
+        },
+        username: {
+            type: String,
+            required: true
+        },
+       
+    }],
+  
+  },{ strict: "throw" })
+  const Post = mongoose.model('Post', postSchema);
+
 createPost.post("/", async (req, res) => {
     const userID = req.session.userId
     if(!userID) {
@@ -17,7 +53,6 @@ createPost.post("/", async (req, res) => {
     userId: userID,
     username: findName[0].username,
     post: post,
-    createdAtDate: formattedDate
   
   };
   
@@ -33,4 +68,4 @@ createPost.post("/", async (req, res) => {
     }
 })
 
-module.exports = {createPost, Post }
+module.exports = createPost
