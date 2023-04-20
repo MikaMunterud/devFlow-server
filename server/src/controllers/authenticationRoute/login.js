@@ -1,8 +1,19 @@
 const express = require("express");
 const login = express.Router();
 const user = require("./schemas/user");
+const Joi = require('joi');
+
+const loginSchema = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
+});
+
 
 login.post("/", async (req, res) => {
+  const { error} = loginSchema.validate(req.body);
+if (error) {
+  return res.status(404).send(error.details);
+} 
   const name = req.body.username.toLowerCase();
   const pass = req.body.password;
   console.log(name, pass);
@@ -10,6 +21,8 @@ login.post("/", async (req, res) => {
     return res.status(404).send({ message: "Someone is already logged in!" });
   }
   try {
+    
+
     const result = await user.find({
       username: `${name}`,
       password: `${pass}`,
