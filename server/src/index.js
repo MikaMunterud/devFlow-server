@@ -4,7 +4,11 @@ const db = require("./database");
 const login = require("./controllers/authenticationRoute/login");
 const register = require("./controllers/authenticationRoute/register");
 const cors = require("cors");
-const createPost = require("./controllers/postsRoute/createPost");
+const {createPost} = require("./controllers/postsRoute/createPost");
+const deletePost = require("./controllers/postsRoute/deletePost");
+const editPost = require("./controllers/postsRoute/editPost");
+const getPosts = require("./controllers/postsRoute/getPosts");
+const getSinglePost = require("./controllers/postsRoute/getSinglePost");
 
 const app = express();
 app.use(express.json());
@@ -38,6 +42,10 @@ db();
 app.use("/register", register);
 app.use("/createpost", createPost);
 app.use("/login", login);
+app.use("/deletepost", deletePost)
+app.use("/editpost", editPost)
+app.use("/getposts", getPosts)
+app.use("/getsinglepost", getSinglePost)
 app.listen(4000, () => {
   console.log("Server started on port 4000");
 });

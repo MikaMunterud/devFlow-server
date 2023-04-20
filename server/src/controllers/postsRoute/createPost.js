@@ -2,6 +2,11 @@ const user = require("../authenticationRoute/schemas/user")
 const express = require("express");
 const createPost = express.Router();
 const mongoose = require("mongoose");
+const Joi = require('joi');
+
+const postValidationSchema = Joi.object({
+  post: Joi.string().required(),
+});
 const postSchema = new mongoose.Schema({
     userId: {
         type: String,
@@ -43,7 +48,7 @@ createPost.post("/", async (req, res) => {
    
     const post = req.body.post
 
-    const {error} = schema.validate(req.body)
+    const {error} = postValidationSchema.validate(req.body)
     if(error) {
         return res.status(404).send(error.details)
     }
@@ -69,4 +74,4 @@ createPost.post("/", async (req, res) => {
     }
 })
 
-module.exports = createPost
+module.exports = {createPost, Post}
