@@ -1,3 +1,4 @@
+const user = require("../authenticationRoute/schemas/user")
 const express = require("express");
 const createPost = express.Router();
 const mongoose = require("mongoose");
