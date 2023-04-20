@@ -4,6 +4,7 @@ const db = require("./database");
 const login = require("./controllers/authenticationRoute/login");
 const register = require("./controllers/authenticationRoute/register");
 const cors = require("cors");
+const createPost = require("./controllers/postsRoute/createPost");
 
 const app = express();
 app.use(express.json());
@@ -35,8 +36,10 @@ app.use(
 db();
 
 app.use("/register", register);
-
+app.use("/createpost", createPost);
 app.use("/login", login);
 app.listen(4000, () => {
   console.log("Server started on port 4000");
 });
+
+
