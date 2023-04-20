@@ -27,9 +27,7 @@ const postSchema = new mongoose.Schema({
       },
      
   }],
-  createdAtDate: {
-      type: String,
-      required: true
-  }
+
 },{ strict: "throw" })
 const Post = mongoose.model('Post', postSchema);
+module.exports = {Post} 
