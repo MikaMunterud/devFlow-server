@@ -30,7 +30,7 @@ likePost.patch("/", async (req, res) => {
         res.send("ok")
        
     }catch(err) {
-        console.log(err)
+      res.sendStatus(500)
     }
 })
 

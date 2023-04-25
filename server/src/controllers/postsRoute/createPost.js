@@ -54,7 +54,6 @@ createPost.post("/", async (req, res) => {
     }
 
    const findName = await user.find({_id: `${userID}`}).lean().select('username').exec()
-   console.log(findName)
    const createPostData = {
     userId: userID,
     username: findName[0].username,
@@ -68,9 +67,8 @@ createPost.post("/", async (req, res) => {
        
         await createPost.save()
         res.send({message: "Post created!"})
-        console.log("Created")
     } catch (err) {
-        res.status(400).send(err)
+        res.status(500).send(err)
     }
 })
 
