@@ -10,10 +10,8 @@ const editPost = require("./controllers/postsRoute/editPost");
 const getPosts = require("./controllers/postsRoute/getPosts");
 const getSinglePost = require("./controllers/postsRoute/getSinglePost");
 const likePost = require("./controllers/postsRoute/likePost");
-
-const app = express();
+const app = express(); 
 app.use(express.json());
-
 app.use(
   session({
     key: "userId",
@@ -52,4 +50,4 @@ app.listen(4000, () => {
   console.log("Server started on port 4000");
 });
 
-
+module.exports= app
