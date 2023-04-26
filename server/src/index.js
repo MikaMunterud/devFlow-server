@@ -48,12 +48,8 @@ app.use("/getsinglepost", getSinglePost)
 app.use("/likepost", likePost)
 
 app.get("/", (req, res) => {
-  if (!res) {
-      res.sendStatus(404)
-  }else {
-      res.sendStatus(200)
-  }
-})
+  res.status(200).json({ message: "Success: server is running on port 4000" });
+});
 app.listen(4000, () => {
   console.log("Server started on port 4000");
  
