@@ -16,7 +16,7 @@ if (error) {
 } 
   const name = req.body.username.toLowerCase();
   const pass = req.body.password;
-  console.log(name, pass);
+ 
   if (req.session.userId) {
     return res.status(404).send({ message: "Someone is already logged in!" });
   }
