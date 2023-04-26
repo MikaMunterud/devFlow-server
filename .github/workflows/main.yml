@@ -17,4 +17,4 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm i
-      - run: npm test
+      - run: npx jest
