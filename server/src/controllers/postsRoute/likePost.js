@@ -3,6 +3,9 @@ const likePost = express.Router();
 const user = require("../authenticationRoute/schemas/user")
 const {Post} = require("../postsRoute/createPost")
 const Joi = require('joi');
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
+
 
 const schema = Joi.object({
   
@@ -22,6 +25,9 @@ likePost.patch("/", async (req, res) => {
     if(!userID) {
         return res.sendStatus(401)
     }
+    if (!ObjectId.isValid(blogPostID)) {
+      return res.sendStatus(404);
+  }
     const postExists = await Post.exists({ _id: `${blogPostID}` });
    
     if (!postExists) {
